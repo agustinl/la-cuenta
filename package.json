@@ -10,6 +10,7 @@
     "cy:run": "cypress run",
     "cy:open": "cypress open",
     "test": "run-p --race dev cy:run",    
+    "clean": "rm -rf ./__sapper__",
     "export": "sapper export --legacy",
     "deploy": "npm run clean && npm run export && node ./scripts/gh-pages.js"
   },
