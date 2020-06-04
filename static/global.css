@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    color:#111;
+    background: #FFF;
+}
+
+main {
+    max-width: 380px;
+    margin:20px auto;
+}
+
+header {
+    margin-bottom:50px;
+}
+
+h1 {
+    margin:0;
+    margin:10px 0 0px 0;
+    font-weight:700;
+    
+    background: linear-gradient(to right, #3b4fbc 0%, #2b64dc 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+h2 {
+    font-size:14px;
+    margin:10px 0 10px 0;
+    font-weight:400;
+}
+
+h3 {
+    margin:0;
+}
+
+h3:first-child {
+    font-weight:400;
+    font-size:16px;
+}
+
+h3:last-child {
+    font-weight:700;
+    font-size:20px;
+    margin-left:10px;
+}
+
+header div span {
+    font-size:14px;
+    font-weight: 700;
+}
+
+p {
+    font-size:14px;
+}
+
+.someone p {
+    font-size:16px;
+    margin:0;
+}
+
+p.who {
+    padding: 0 20px;
+}
+
+p.how-much {
+    padding-left:20px;
+}
+
+.how-much {
+    font-weight:600;
+}
+
+.how-much.receives {
+    color:#52c41a;
+}
+
+.how-much.debit,
+.the-rest p strong {
+    color: #f5222d;
+}
+
+.the-rest p {
+    font-size:18px;
+    text-align:center;
+    margin:0;
+}
+
+.the-rest p span {
+    font-size:14px;
+    color:#8c8c8c;
+}
+
+.input-group {
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+    margin-bottom:20px;
+}
+
+.input-group input:nth-child(2) {
+    margin-left:10px;
+}
+
+input {
+    box-sizing: border-box;
+    width: 100%;
+    height:34px;
+    border-radius:3px;
+    padding: 4px 11px;
+
+    color: rgba(0,0,0,.65);
+    font-family:inherit;
+    font-size: 14px;
+    line-height: 1.5715;
+
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #d9d9d9;
+
+    transition: .3s;
+}
+
+button {
+    line-height: 1.5715;
+    position: relative;
+    display: inline-block;
+    font-weight: 600;
+    white-space: nowrap;
+    text-align: center;
+    border: 1px solid transparent;
+    cursor: pointer;
+    -webkit-transition: all .3s cubic-bezier(.645,.045,.355,1);
+    transition: all .3s cubic-bezier(.645,.045,.355,1);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    font-family:inherit;
+    height: 32px;
+    padding: 4px 15px;
+    font-size: 14px;
+    border-radius: 2px;
+}
+
+button.btn-add {
+    width:100%;
+    color: #fff;
+    background: rgb(41,101,223);
+    background: linear-gradient(324deg, rgba(41,101,223,1) 0%, rgba(60,77,185,1) 100%);
+    border-color: rgb(41,101,223);    
+}
+
+button.btn-delete {
+    color: #fff;    
+    background: #ff4d4f;
+    border-color: #ff4d4f;
+    margin-left:10px;       
+}
+
+input:hover {
+    border-color: rgb(41,101,223);
+    border-right-width: 1px!important;
+}
+
+input:focus,
+button:hover,
+button:focus {
+    border-color: rgb(41,101,223);
+    border-right-width: 1px!important;
+    outline: 0;
+    -webkit-box-shadow: 0 0 0 2px rgba(24,144,255,.2);
+    box-shadow: 0 0 0 2px rgba(24,144,255,.2);
+}
+
+button.btn-delete:hover,
+button.btn-delete:focus {
+    border-color: rgb(255, 77, 79);
+    -webkit-box-shadow: 0 0 0 2px rgba(255,77,79,.2);
+    box-shadow: 0 0 0 2px rgba(255,77,79,.2);
+}
+
+/* Cuenta */
+
+#who-put-list,
+#division-list {
+    margin: 50px 0 0;
+}
+
+.someone {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin: 20px 0;
+}
+
+hr {
+    flex-grow:1;
+    border:none;
+    border-top:dashed 1px #CCC;
+}
+
+#total {
+    margin: 30px 0 0;
+}
+
+.total {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    border-top: solid 1px #111;
+    padding: 10px 0px 0;
+}
+
+.divided-by {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.divided-by input {
+    width:auto;
+    margin-left:20px;
+    max-width:80px;
+}
+
+.the-rest {
+    /*border: dashed 1px #111;*/
+    background: #FAFAFA;
+    border: solid 1px #EAEAEA;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
