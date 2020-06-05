@@ -35,6 +35,15 @@
 		dividedBy = dividedBy - 1;
 	}
 
+	function removeAll() {
+		people = [];
+		people = [{who: "X", howMuch: 0}];
+		
+		calculateTotal();
+
+		dividedBy = people.length;
+	}
+
 	function calculateTotal() {
 		setTimeout(() => {
 			total = people.reduce(function(prev, cur) {
@@ -55,17 +64,17 @@
 
 	{#each people as someone, i}
 	<div class="input-group">
-		<input type="text" bind:value={someone.who} placeholder="¿Quien puso?">
-			
-		<input type="number" min="1" bind:value={someone.howMuch} placeholder="¿Cuanto?" on:keyup={calculateTotal}>
+		<label for="who" class="visuallyhidden">¿Quien puso?</label>
+		<input type="text" name="who" bind:value={someone.who} placeholder="¿Quien puso?">
+		
+		<label for="how-much" class="visuallyhidden">Cuanto puso?</label>
+		<input type="number" name="how-much" min="1" bind:value={someone.howMuch} placeholder="¿Cuanto?" on:keyup={calculateTotal}>
 		
 		<button class="btn-delete" on:click={() => deleteSomeone(i)}>x</button>
 	</div>
 	{/each}
 
-	<button class="btn-add" on:click={addAnother}>
-		Agregar otro
-	</button>
+	<button class="btn-add" on:click={addAnother}>Agregar otro</button>
 
 </section>
 
@@ -90,7 +99,8 @@
 
 	<div class="divided-by">
 		<h3>Dividir por</h3>
-		<input type="number" bind:value={dividedBy} min="1">
+		<label for="divided-by" class="visuallyhidden">Divided By</label>
+		<input type="number" name="divided-by" bind:value={dividedBy} min="1">
 	</div>	
 
 </section>
@@ -126,6 +136,10 @@
 		<div class="the-rest">
 			<p><strong>{formatter.format(Math.round(total / dividedBy))}</strong> <span>c/u</span></p>
 		</div>
-		{/if}
+		{/if}	
+		
+		<button class="btn-clean" on:click={removeAll}>
+			Borrar lista
+		</button>
 
 </section>

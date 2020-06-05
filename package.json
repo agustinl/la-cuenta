@@ -1,16 +1,15 @@
 {
-  "name": "TODO",
-  "description": "TODO",
+  "name": "cuentas-claras",
+  "description": "Dividi la cuenta y todos a mano",
   "version": "1.0.0",
   "scripts": {
     "dev": "sapper dev",
     "build": "sapper build --legacy",
-    "export": "sapper export --legacy",
+    "export": "sapper export --basepath cuentas-claras --legacy",
     "start": "node __sapper__/build",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
     "test": "run-p --race dev cy:run",
-    "export": "sapper export --basepath cuentas-claras --legacy",
     "deploy": "npm run export && node ./scripts/gh-pages.js"
   },
   "dependencies": {
