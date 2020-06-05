@@ -1,10 +1,10 @@
 {
 	"background_color": "#ffffff",
 	"theme_color": "#333333",
-	"name": "Cuentas Claras",
-	"short_name": "Cuentas Claras",
+	"name": "La Cuenta",
+	"short_name": "La Cuenta",
 	"display": "minimal-ui",
-	"start_url": "/cuentas-claras/",
+	"start_url": "/la-cuenta/",
 	"icons": [
 		{
 			"src": "android-chrome-192x192.png",
