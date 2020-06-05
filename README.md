@@ -1,5 +1,5 @@
-<img alt="cuentas-claras" src="https://raw.githubusercontent.com/agustinl/cuentas-claras/develop/static/favicon-32x32.png">
+<img alt="La Cuenta Icon" src="https://raw.githubusercontent.com/agustinl/cuentas-claras/develop/static/favicon-32x32.png">
 
-# cuentas-claras
+# la-cuenta
 
 #### Dividi la cuenta y todos a mano

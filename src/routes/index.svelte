@@ -1,17 +1,7 @@
-<!--<script context="module">
-    export async function preload() {
-        const response = await this.fetch('language.json');
-        const responseJson = await response.json();
-        return {
-            words : responseJson
-        };
-    }
-</script>-->
-
 <script>
 	$: people = [{who: "X", howMuch: 0}];
 	$: total = calculateTotal();
-	$: dividedBy = dividedBy || people.length;
+	$: dividedBy = 1;
 
 	let formatter = new Intl.NumberFormat('es-AR', {
 		style: 'currency',
@@ -20,8 +10,6 @@
 
 	function addAnother() {
 		people = [...people, {who: "X", howMuch: 0}];
-
-		dividedBy = dividedBy + 1;
 	}
 
 	function deleteSomeone(i) {
@@ -31,8 +19,6 @@
 		people = people;
 
 		calculateTotal();
-
-		dividedBy = dividedBy - 1;
 	}
 
 	function removeAll() {
@@ -56,39 +42,35 @@
 </script>
 
 <svelte:head>
-	<title>Cuentas claras</title>
-    <meta name="description" content="Dividi la cuenta entre amigos familias compañeros varios" />
+	<title>La Cuenta</title>
+    <meta name="description" content="Dividi la cuenta y todos a mano" />
 </svelte:head>
 
 <section>
 
+	<h2>Quienes pusieron?</h2>
+
 	{#each people as someone, i}
 	<div class="input-group">
 		<label for="who" class="visuallyhidden">¿Quien puso?</label>
-		<input type="text" name="who" bind:value={someone.who} placeholder="¿Quien puso?">
+		<input type="text" name="who" id="who" bind:value={someone.who} placeholder="¿Quien puso?" maxlength="12">
 		
 		<label for="how-much" class="visuallyhidden">Cuanto puso?</label>
-		<input type="number" name="how-much" min="1" bind:value={someone.howMuch} placeholder="¿Cuanto?" on:keyup={calculateTotal}>
+		<input type="number" name="how-much" id="how-much" min="1" bind:value={someone.howMuch} placeholder="¿Cuanto?" on:keyup={calculateTotal}>
 		
-		<button class="btn-delete" on:click={() => deleteSomeone(i)}>x</button>
+		<button class="btn-delete" on:click={() => deleteSomeone(i)}>
+			<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-x" width="30" height="30" viewBox="0 0 22 22" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+			<path stroke="none" d="M0 0h24v24H0z"/>
+			<circle cx="12" cy="12" r="9" />
+			<path d="M10 10l4 4m0 -4l-4 4" />
+			</svg>
+		</button>
 	</div>
 	{/each}
 
 	<button class="btn-add" on:click={addAnother}>Agregar otro</button>
 
 </section>
-
-<!-- <section id="who-put-list">
-
-	{#each people as someone, i}
-	<div class="someone">
-		<p class="who">{someone.who}</p>
-		<hr>
-		<p class="how-much">{someone.howMuch}</p>
-	</div>
-	{/each}
-
-</section> -->
 
 <section id="total">
 
@@ -100,7 +82,7 @@
 	<div class="divided-by">
 		<h3>Dividir por</h3>
 		<label for="divided-by" class="visuallyhidden">Divided By</label>
-		<input type="number" name="divided-by" bind:value={dividedBy} min="1">
+		<input type="number" name="divided-by" id="divided-by" bind:value={dividedBy} min="1">
 	</div>	
 
 </section>
@@ -133,7 +115,7 @@
 			<hr>
 			<p class="how-much">{formatter.format(Math.round((total / dividedBy) * (dividedBy - people.length)))}</p>
 		</div>
-		<div class="the-rest">
+		<div class="rest">
 			<p><strong>{formatter.format(Math.round(total / dividedBy))}</strong> <span>c/u</span></p>
 		</div>
 		{/if}	

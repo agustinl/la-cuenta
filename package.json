@@ -1,11 +1,11 @@
 {
-  "name": "cuentas-claras",
+  "name": "La Cuenta",
   "description": "Dividi la cuenta y todos a mano",
   "version": "1.0.0",
   "scripts": {
     "dev": "sapper dev",
     "build": "sapper build --legacy",
-    "export": "sapper export --basepath cuentas-claras --legacy",
+    "export": "sapper export --basepath la-cuenta --legacy",
     "start": "node __sapper__/build",
     "cy:run": "cypress run",
     "cy:open": "cypress open",

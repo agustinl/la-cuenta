@@ -1,10 +1,10 @@
 const ghpages = require('gh-pages');
 
 ghpages.publish(
-    '__sapper__/export/cuentas-claras',
+    '__sapper__/export/la-cuenta',
     {
         branch: 'master',
-        repo: 'https://github.com/agustinl/cuentas-claras.git',
+        repo: 'https://github.com/agustinl/la-cuenta.git',
         user: {
             name: 'agustinl',
             email: 'aencaje@gmail.com'
