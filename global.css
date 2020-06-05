@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-
 body {
     font-family: 'Inter', sans-serif;
     color:#111;
@@ -8,17 +6,22 @@ body {
 
 main {
     max-width: 380px;
-    margin:20px auto;
+    margin: 0px auto;
+    padding: 10px;
 }
 
-header {
-    margin-bottom:50px;
+header {    
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    margin-bottom:20px;
 }
 
 h1 {
+    font-size:28px;
     margin:0;
-    margin:10px 0 0px 0;
     font-weight:700;
+    flex-grow:1;
     
     background: linear-gradient(to right, #3b4fbc 0%, #2b64dc 100%);
 	-webkit-background-clip: text;
@@ -27,8 +30,14 @@ h1 {
 
 h2 {
     font-size:14px;
-    margin:10px 0 10px 0;
+    margin:10px 0 0 0;
     font-weight:400;
+    width:100%;
+    text-align:center;
+}
+
+header img {
+    margin-right:10px;
 }
 
 h3 {
@@ -46,26 +55,18 @@ h3:last-child {
     margin-left:10px;
 }
 
-header div span {
-    font-size:14px;
-    font-weight: 700;
+h5 {
+    font-weight:400;
+}
+
+a {
+    text-decoration:none;
+    color:#3b4fbc;
 }
 
 p {
     font-size:14px;
-}
-
-.someone p {
-    font-size:16px;
     margin:0;
-}
-
-p.who {
-    padding: 0 20px;
-}
-
-p.how-much {
-    padding-left:20px;
 }
 
 .how-much {
@@ -92,6 +93,11 @@ p.how-much {
     color:#8c8c8c;
 }
 
+header div span {
+    font-size:14px;
+    font-weight: 700;
+}
+
 .input-group {
 	display:flex;
 	justify-content:space-between;
@@ -99,7 +105,7 @@ p.how-much {
     margin-bottom:20px;
 }
 
-.input-group input:nth-child(2) {
+.input-group input:nth-child(4) {
     margin-left:10px;
 }
 
@@ -140,10 +146,10 @@ button {
     -ms-touch-action: manipulation;
     touch-action: manipulation;
     font-family:inherit;
-    height: 32px;
+    height: 36px;
     padding: 4px 15px;
     font-size: 14px;
-    border-radius: 2px;
+    border-radius: 3px;
 }
 
 button.btn-add {
@@ -151,14 +157,20 @@ button.btn-add {
     color: #fff;
     background: rgb(41,101,223);
     background: linear-gradient(324deg, rgba(41,101,223,1) 0%, rgba(60,77,185,1) 100%);
-    border-color: rgb(41,101,223);    
+    border-color: rgb(41,101,223);
 }
 
 button.btn-delete {
     color: #fff;    
     background: #ff4d4f;
     border-color: #ff4d4f;
-    margin-left:10px;       
+    margin-left:10px;
+}
+
+button.btn-clean {    
+    flex-grow:1;
+    width: 100%;
+    margin-top:20px;
 }
 
 input:hover {
@@ -183,38 +195,42 @@ button.btn-delete:focus {
     box-shadow: 0 0 0 2px rgba(255,77,79,.2);
 }
 
-/* Cuenta */
-
 #who-put-list,
 #division-list {
-    margin: 50px 0 0;
+    margin: 20px 0 0;
 }
 
 .someone {
     display:flex;
     justify-content:space-between;
     align-items:center;
+    flex-wrap:wrap;
 
-    margin: 20px 0;
+    margin: 10px 0;
+}
+
+.someone img {
+    margin-right:5px;
 }
 
 hr {
     flex-grow:1;
     border:none;
     border-top:dashed 1px #CCC;
+    margin: 0 10px;
 }
 
 #total {
-    margin: 30px 0 0;
+    margin: 20px 0 ;
+    padding:10px 0;
+    border-top: solid 1px #CCC;
+    border-bottom: solid 1px #CCC;
 }
 
 .total {
     display:flex;
     justify-content:space-between;
-    align-items:center;
-
-    border-top: solid 1px #111;
-    padding: 10px 0px 0;
+    align-items:center;    
 }
 
 .divided-by {
@@ -226,14 +242,45 @@ hr {
 
 .divided-by input {
     width:auto;
-    margin-left:20px;
-    max-width:80px;
+    max-width:100px;
 }
 
 .the-rest {
-    /*border: dashed 1px #111;*/
     background: #FAFAFA;
-    border: solid 1px #EAEAEA;
+    border: dashed 1px #CCC;
     padding: 5px 10px;
     border-radius: 3px;
+    margin-top:20px;    
+}
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+footer {
+    display:flex;
+    justify-content:space-evenly;
+}
+
+@media only screen and (max-width:310px) {
+
+    h1 {
+        font-size:18px;
+    }
+
+    h2 {
+        text-align:left;
+    }
+
+    header img {
+        max-width:30px;
+    }
+
 }

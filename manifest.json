@@ -2,9 +2,9 @@
 	"background_color": "#ffffff",
 	"theme_color": "#333333",
 	"name": "Cuentas Claras",
-	"short_name": "CC",
+	"short_name": "Cuentas Claras",
 	"display": "minimal-ui",
-	"start_url": "/",
+	"start_url": "/cuentas-claras/",
 	"icons": [
 		{
 			"src": "android-chrome-192x192.png",
