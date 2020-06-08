@@ -1,3 +1,7 @@
+*:focus {
+    outline: thin dotted;
+}
+
 body {
     font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     color:#111;
@@ -50,6 +54,13 @@ h3:last-child {
 
 h5 {
     font-weight:400;
+}
+
+h6 {
+    width:100%;
+    flex-grow:1;
+    text-align:center;
+    margin:0;
 }
 
 a {
@@ -165,6 +176,18 @@ button.btn-clean {
     margin-top:20px;
 }
 
+button.btn-send {
+    width:auto;
+    height:auto;
+    font-weight: 600;
+    border:none;
+    padding:0;
+    padding-top:8px;
+    
+    color: rgb(41,101,223);
+    background:transparent;
+}
+
 input:hover {
     border-color: rgb(41,101,223);
     border-right-width: 1px!important;
@@ -210,7 +233,7 @@ hr {
     /*padding:10px 0;
     border-top: solid 1px #CCC;
     border-bottom: solid 1px #ccc;*/
-    padding:10px;
+    padding:10px 20px;
     background:#FFF;
     border-radius:8px;
     border: solid 1px #EAEAEA;
@@ -255,6 +278,7 @@ hr {
 footer {
     display:flex;
     justify-content:space-evenly;
+    flex-wrap:wrap;
 }
 
 @media only screen and (max-width:310px) {

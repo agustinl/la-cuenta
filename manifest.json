@@ -1,10 +1,11 @@
 {
-	"background_color": "#ffffff",
-	"theme_color": "#333333",
+	"background_color": "#FAFAFA",
+	"theme_color": "#FFFFFF",
 	"name": "La Cuenta",
 	"short_name": "La Cuenta",
+	"description": "Dividi la cuenta y todos a mano",
 	"display": "minimal-ui",
-	"start_url": "/la-cuenta/",
+	"start_url": "/la-cuenta/?source=pwa",
 	"icons": [
 		{
 			"src": "android-chrome-192x192.png",
