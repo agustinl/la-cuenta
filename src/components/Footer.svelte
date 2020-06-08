@@ -4,4 +4,5 @@
     
     <h5>by <strong><a href="https://www.agustinl.dev/">agustinl.dev</a></strong></h5>
 
+    <h6><strong>v2.0.0 — {new Date().getFullYear()}</strong></h6>
 </footer>
