@@ -1,4 +1,6 @@
 <script>
+	import { blur  } from 'svelte/transition';
+
 	$: people = [{who: "X", howMuch: 0}];
 	$: total = calculateTotal();
 	$: dividedBy = 1;
@@ -51,15 +53,15 @@
 	<h2>Quienes pusieron?</h2>
 
 	{#each people as someone, i}
-	<div class="input-group">
+	<div class="input-group" transition:blur>
 		<label for="who" class="visuallyhidden">¿Quien puso?</label>
 		<input type="text" name="who" id="who" bind:value={someone.who} placeholder="¿Quien puso?" maxlength="12">
 		
 		<label for="how-much" class="visuallyhidden">Cuanto puso?</label>
 		<input type="number" name="how-much" id="how-much" min="1" bind:value={someone.howMuch} placeholder="¿Cuanto?" on:keyup={calculateTotal}>
 		
-		<button class="btn-delete" on:click={() => deleteSomeone(i)}>
-			<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-x" width="30" height="30" viewBox="0 0 22 22" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+		<button class="btn-delete" aria-label="Borrar" on:click={() => deleteSomeone(i)}>
+			<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-x" width="32" height="32" viewBox="0 0 22 22" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 			<path stroke="none" d="M0 0h24v24H0z"/>
 			<circle cx="12" cy="12" r="9" />
 			<path d="M10 10l4 4m0 -4l-4 4" />
@@ -81,7 +83,7 @@
 
 	<div class="divided-by">
 		<h3>Dividir por</h3>
-		<label for="divided-by" class="visuallyhidden">Divided By</label>
+		<label for="divided-by" class="visuallyhidden">Dividir por</label>
 		<input type="number" name="divided-by" id="divided-by" bind:value={dividedBy} min="1">
 	</div>	
 
@@ -90,7 +92,7 @@
 <section id="division-list">	
 
 		{#each people as someone, i}
-		<div class="someone">
+		<div class="someone" transition:blur>
 			<img src="https://avatars.dicebear.com/api/human/{someone.who}.svg?r=50&w=30" alt="{someone.who}">
 			{#if Math.sign(total/dividedBy - someone.howMuch) === -1}
 				<p class="who">A <strong>{someone.who}</strong> le deben</p>
@@ -109,18 +111,18 @@
 		{/each}
 
 		{#if dividedBy > people.length}
-		<div class="someone">
+		<div class="someone" transition:blur>
 			<img src="https://avatars.dicebear.com/api/human/{people.length}.svg?r=50&w=30" alt="Someone">
 			<p class="who">El <strong>resto</strong> debe</p>
 			<hr>
 			<p class="how-much">{formatter.format(Math.round((total / dividedBy) * (dividedBy - people.length)))}</p>
 		</div>
-		<div class="rest">
+		<div class="rest" transition:blur>
 			<p><strong>{formatter.format(Math.round(total / dividedBy))}</strong> <span>c/u</span></p>
 		</div>
 		{/if}	
 		
-		<button class="btn-clean" on:click={removeAll}>
+		<button class="btn-clean" aria-label="Borrar todo" on:click={removeAll}>
 			Borrar lista
 		</button>
 
