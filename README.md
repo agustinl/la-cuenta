@@ -3,3 +3,5 @@
 # la-cuenta
 
 #### Dividi la cuenta y todos a mano
+
+### [CHANGELOG](https://github.com/agustinl/la-cuenta/blob/develop/CHANGELOG.md)

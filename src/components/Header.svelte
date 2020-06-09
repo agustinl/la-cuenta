@@ -3,17 +3,20 @@
 
 	if(typeof window !== "undefined") {
 		if (navigator.share) {
-			navigatorShare = false;
-			navigator.share({
-				title: 'La Cuenta',
-				text: 'Dividi la cuenta y todos a mano',
-				url: 'https://agustinl.github.io/la-cuenta/',
-			})
-			.then(() => console.log('Successful share'))
-			.catch((error) => console.log('Error sharing', error));
+			navigatorShare = true;
 		} else {
 			console.log("Web Share is not supported");
 		}
+	}
+
+	function shareContent() {
+		navigator.share({
+			title: 'La Cuenta',
+			text: 'Dividi la cuenta y todos a mano',
+			url: 'https://agustinl.github.io/la-cuenta/',
+		})
+		.then(() => console.log('Successful share'))
+		.catch((error) => console.log('Error sharing', error));
 	}
 
 </script>
@@ -21,12 +24,14 @@
 	<img src="favicon.ico" alt="La Cuenta Logo">
 	<h1>La Cuenta</h1>
 	{#if navigatorShare}
-	<button class="btn-send">
+	<button class="btn-send" on:click={shareContent}>
 		<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-send" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 		<path stroke="none" d="M0 0h24v24H0z"/>
 		<line x1="10" y1="14" x2="21" y2="3" />
 		<path d="M21 3L14.5 21a.55 .55 0 0 1 -1 0L10 14L3 10.5a.55 .55 0 0 1 0 -1L21 3" />
 		</svg>
 	</button>
+	{:else}
+	<span>-</span>
 	{/if}
 </header>
