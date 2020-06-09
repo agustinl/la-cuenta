@@ -1,10 +1,15 @@
 *:focus {
     outline: thin dotted;
+    background:transparent;
+}
+
+:root {
+  --main-bg-color: brown;
 }
 
 body {
     font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-    color:#111;
+    color:#000;
     background: #FAFAFA;
 }
 
@@ -21,22 +26,22 @@ header {
     margin-bottom:10px;
 }
 
+header img {
+    max-width:60px;
+}
+
 h1 {
-    font-size:28px;
-    margin:0;
+    font-size:22px;
+    margin:0 0 0 10px;
     font-weight:700;
     flex-grow:1;
-    color:#111;
 }
 
 h2 {
-    font-size:14px;
+    font-size:18px;
     font-weight:700;
     width:100%;
-}
-
-header img {
-    margin-right:10px;
+    color:#999;
 }
 
 h3 {
@@ -49,7 +54,10 @@ h3:first-child {
 }
 
 h3:last-child {
-    font-weight:700;
+    font-size:20px;
+    font-weight:600;
+    font-family: monospace;
+    text-align:right;
 }
 
 h5 {
@@ -65,15 +73,16 @@ h6 {
 
 a {
     text-decoration:none;
-    color:#111;
+    color:inherit;
 }
 
 p {
-    font-size:14px;
+    font-size:16px;
     margin:0;
 }
 
 .how-much {
+    font-family: monospace;
     font-weight:600;
 }
 
@@ -87,6 +96,7 @@ p {
 }
 
 .rest p {
+    font-family: monospace;
     font-size:18px;
     text-align:center;
     margin:0;
@@ -94,39 +104,30 @@ p {
 
 .rest p span {
     font-size:14px;
-    color:#AEAEAE;
-}
-
-header div span {
-    font-size:14px;
-    font-weight: 700;
 }
 
 .input-group {
 	display:flex;
 	justify-content:space-between;
 	align-items:center;
-    margin-bottom:20px;
+    margin-bottom:15px;
 }
 
 .input-group input:nth-child(4) {
-    margin-left:5px;
+    margin-left:5px;    
+    font-family: monospace;
 }
 
 input {
     box-sizing: border-box;
     width: 100%;
-    height:32px;
-    border-radius:2px;
-    padding: 4px 11px;
+    height:36px;
+    border-radius: 5px;
+    padding: 0px 8px;
 
-    color: rgba(0,0,0,.65);
     font-family:inherit;
-    font-size: 14px;
-    line-height: 1.5715;    
-
+    font-size:16px;
     background-color: #fff;
-    background-image: none;
     border: 1px solid #CCC;
 
     transition: .3s;
@@ -143,57 +144,42 @@ button {
     font-family:inherit;
     height: 36px;
     font-size: 14px;
-    border-radius: 8px;
+    border-radius: 5px;
     width:100%;
 }
 
 button.btn-add {    
     color: #fff;
-    background: rgb(41,101,223);
-    background: linear-gradient(324deg, rgba(41,101,223,1) 0%, rgba(60,77,185,1) 100%);
-    border-color: rgb(41,101,223);
+    background:rgb(41,101,223);
 }
 
 button.btn-delete {
     width:auto;
-    font-weight: 600;
     border:none;
-    font-family:inherit;
-    border-radius: 50%;
-    padding:0;
-    padding-top:1px;
-    
-    color: #FF3A30;
     background:transparent;
-    margin-left:5px;
 
-    transition:.3s;
+    color: #FF3A30;
 }
 
 button.btn-clean {    
     flex-grow:1;
     width: 100%;
     margin-top:20px;
+    background:rgba(0,0,0,.03);
 }
 
 button.btn-send {
     width:auto;
     height:auto;
-    font-weight: 600;
     border:none;
-    padding:0;
     padding-top:8px;
-    
-    color: rgb(41,101,223);
     background:transparent;
-}
-
-input:hover {
-    border-color: rgb(41,101,223);
-    border-right-width: 1px!important;
+    
+    color:rgb(41,101,223);
 }
 
 input:focus,
+input:hover,
 button.btn-add:hover,
 button.btn-add:focus {
     border-color: rgb(41,101,223);
@@ -230,13 +216,10 @@ hr {
 
 #total {
     margin: 40px 0 ;
-    /*padding:10px 0;
-    border-top: solid 1px #CCC;
-    border-bottom: solid 1px #ccc;*/
     padding:10px 20px;
     background:#FFF;
-    border-radius:8px;
-    border: solid 1px #EAEAEA;
+    border-radius:5px;
+    border: solid 1px #FAFAFA;
     box-shadow: 0 0 10px rgba(204,204,204,0.3);
 }
 
@@ -246,21 +229,23 @@ hr {
     align-items:center;
 }
 
+#total > div * {
+    flex-grow:1;
+}
+
 .divided-by {
     margin-top: 10px;
 }
 
 .divided-by input {
-    width:auto;
-    height:28px;
-    max-width:80px;
+    max-width:100px;
 }
 
 .rest {
     background: #FFFFFF;
-    border: dashed 1px #CCC;
+    border: dashed 1px #999;
     padding: 5px 10px;
-    border-radius: 8px;
+    border-radius: 5px;
     margin-top:20px;    
 }
 
@@ -279,16 +264,4 @@ footer {
     display:flex;
     justify-content:space-evenly;
     flex-wrap:wrap;
-}
-
-@media only screen and (max-width:310px) {
-
-    h1 {
-        font-size:18px;
-    }
-
-    header img {
-        max-width:30px;
-    }
-
 }
