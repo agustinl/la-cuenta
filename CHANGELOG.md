@@ -1,5 +1,5 @@
 # la-cuenta changelog
 
 ## 2.0.0
-- [x] Added CHANGELOG.md
-- [ ] Share in WhatsApp (testing)
+- [x] Agregado CHANGELOG.md
+- [X] Compartir en WhatsApp, u otra red social en mobile

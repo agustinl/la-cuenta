@@ -1,5 +1,13 @@
 <script>
+	import { listaCompartir, totalCompartir, divisionCompartir, cantidadDePersonasCompartir } from '../routes/compartirCuenta.js';
+
 	let navigatorShare = false;
+	let compartir;
+
+	let formatter = new Intl.NumberFormat('es-AR', {
+		style: 'currency',
+		currency:  'ARS'
+	});
 
 	if(typeof window !== "undefined") {
 		if (navigator.share) {
@@ -9,10 +17,33 @@
 		}
 	}
 
-	function shareContent() {
+	function compartirCuenta() {
+
+		compartir = "";
+
+		compartir += "🧾 La Cuenta: \r\n\r\n"
+
+		for (var i = 0, l = $listaCompartir.length; i < l; i++) {
+			if ($listaCompartir[i].resto === 0) {
+				compartir += $listaCompartir[i].quien + " ya puso -- " + formatter.format($listaCompartir[i].cuanto) + "\r\n";
+			} else if ($divisionCompartir > $listaCompartir[i].cuanto) {				
+				compartir += $listaCompartir[i].quien + " debe -- " + formatter.format($listaCompartir[i].resto) + "\r\n";
+			} else{				
+				compartir += "A " + $listaCompartir[i].quien + " le deben -- " + formatter.format($listaCompartir[i].resto) + "\r\n";
+			}
+		}
+
+		if ($cantidadDePersonasCompartir > $listaCompartir.length) {
+			compartir += "El resto debe -- " + formatter.format($divisionCompartir) + "\r\n";
+		}
+
+		compartir += "__________________\r\n\r\n";
+		compartir += "💰 Total : " + formatter.format($totalCompartir) + "\r\n";
+		compartir += "Cada uno : " + formatter.format($divisionCompartir) + "\r\n";
+
 		navigator.share({
 			title: 'La Cuenta',
-			text: 'Dividi la cuenta y todos a mano',
+			text: compartir,
 			url: 'https://agustinl.github.io/la-cuenta/',
 		})
 		.then(() => console.log('Successful share'))
@@ -21,15 +52,9 @@
 
 </script>
 <header>
-	<img src="favicon.ico" alt="La Cuenta Logo">
+	<img src="favicon-32x32.png" alt="La Cuenta Logo">
 	<h1>La Cuenta</h1>
 	{#if navigatorShare}
-	<button class="btn-send" aria-label="Compartir" on:click={shareContent}>
-		<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-send" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-		<path stroke="none" d="M0 0h24v24H0z"/>
-		<line x1="10" y1="14" x2="21" y2="3" />
-		<path d="M21 3L14.5 21a.55 .55 0 0 1 -1 0L10 14L3 10.5a.55 .55 0 0 1 0 -1L21 3" />
-		</svg>
-	</button>
+	<img src="share.png" alt="Compartir" on:click={compartirCuenta}>
 	{/if}
 </header>

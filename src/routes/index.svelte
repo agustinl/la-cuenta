@@ -1,44 +1,60 @@
 <script>
-	import { blur  } from 'svelte/transition';
+	import { blur } from 'svelte/transition';
+	import { listaCompartir, totalCompartir, divisionCompartir, cantidadDePersonasCompartir } from './compartirCuenta.js';
+	import { afterUpdate, beforeUpdate } from 'svelte';
 
-	$: people = [{who: "X", howMuch: 0}];
-	$: total = calculateTotal();
-	$: dividedBy = 1;
+	$: lista = [{quien: "", cuanto: 0}];
+	$: total = 0;
+	$: totalDelResto = 0;
+	$: cadaUno = 0;
+	$: cantidadDePersonas = 1;
+
+	beforeUpdate(() => {
+		total = lista.reduce(function(prev, cur) {
+			if (Number.isNaN(Number(cur.cuanto))) return Number(prev) + 0;
+			return Number(prev) + Number(cur.cuanto);
+		}, 0);
+
+		totalDelResto = Math.round(total/cantidadDePersonas);
+		cadaUno = Math.round((total / cantidadDePersonas) * (cantidadDePersonas - lista.length));
+
+		for (var i = 0, l = lista.length; i < l; i++) {
+			/*console.log(Math.sign(total/cantidadDePersonas - lista[i].cuanto))*/
+			
+			lista[i].resto = Math.abs(Math.round(total/cantidadDePersonas - lista[i].cuanto));
+
+			/*console.log(lista[i].resto);*/
+		}
+	});
+	
+	afterUpdate(() => {
+		listaCompartir.update(n => lista);
+		totalCompartir.update(n => total);
+		divisionCompartir.update(n => totalDelResto);
+		cantidadDePersonasCompartir.update(n => cantidadDePersonas);
+	});
 
 	let formatter = new Intl.NumberFormat('es-AR', {
 		style: 'currency',
 		currency:  'ARS'
 	});
 
-	function addAnother() {
-		people = [...people, {who: "X", howMuch: 0}];
+	function agregarOtro() {
+		lista = [...lista, {quien: "", cuanto: 0}];
 	}
 
-	function deleteSomeone(i) {
-		if (people.length === 1) return;
+	function eliminarUno(i) {
+		if (lista.length === 1) return;
 
-		people.splice(i,1);
-		people = people;
-
-		calculateTotal();
+		lista.splice(i,1);
+		lista = lista;
 	}
 
-	function removeAll() {
-		people = [];
-		people = [{who: "X", howMuch: 0}];
-		
-		calculateTotal();
+	function eliminarTodos() {
+		lista = [];
+		lista = [{quien: "", cuanto: 0}];
 
-		dividedBy = people.length;
-	}
-
-	function calculateTotal() {
-		setTimeout(() => {
-			total = people.reduce(function(prev, cur) {
-				if (Number.isNaN(Number(cur.howMuch))) return Number(prev) + 0;
-				return Number(prev) + Number(cur.howMuch);
-			}, 0);
-		});
+		cantidadDePersonas = lista.length;
 	}
 	
 </script>
@@ -49,28 +65,21 @@
 </svelte:head>
 
 <section>
-
 	<h2>Quienes pusieron?</h2>
 
-	{#each people as someone, i}
+	{#each lista as alguien, i}
 	<div class="input-group" transition:blur>
-		<label for="who" class="visuallyhidden">¿Quien puso?</label>
-		<input type="text" name="who" id="who" bind:value={someone.who} placeholder="¿Quien puso?" maxlength="12">
+		<label for={i} class="visuallyhidden">¿Quien puso?</label>
+		<input type="text" name="quien" id={i} bind:value={alguien.quien} placeholder="¿Quien puso?" maxlength="12">
 		
-		<label for="how-much" class="visuallyhidden">Cuanto puso?</label>
-		<input type="number" name="how-much" id="how-much" min="1" bind:value={someone.howMuch} placeholder="¿Cuanto?" on:keyup={calculateTotal}>
+		<label for={i + "b"} class="visuallyhidden">Cuanto puso?</label>
+		<input type="number" name="cuanto" id={i + "b"} min="1" bind:value={alguien.cuanto} placeholder="¿Cuanto?">
 		
-		<button class="btn-delete" aria-label="Borrar" on:click={() => deleteSomeone(i)}>
-			<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-x" width="32" height="32" viewBox="0 0 22 22" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-			<path stroke="none" d="M0 0h24v24H0z"/>
-			<circle cx="12" cy="12" r="9" />
-			<path d="M10 10l4 4m0 -4l-4 4" />
-			</svg>
-		</button>
+		<img src="close.png" alt="Eliminar Uno" on:click={() => eliminarUno(i)}>
 	</div>
 	{/each}
 
-	<button class="btn-add" on:click={addAnother}>Agregar otro</button>
+	<button class="btn-add" on:click={agregarOtro}>Agregar otro</button>
 
 </section>
 
@@ -81,48 +90,48 @@
 		<h3>{formatter.format(total)}</h3>
 	</div>
 
-	<div class="divided-by">
+	<div class="dividir-por">
 		<h3>Dividir por</h3>
-		<label for="divided-by" class="visuallyhidden">Dividir por</label>
-		<input type="number" name="divided-by" id="divided-by" bind:value={dividedBy} min="1">
+		<label for="divididoPor" class="visuallyhidden">Dividir por</label>
+		<input type="number" name="divididoPor" id="divididoPor" bind:value={cantidadDePersonas} min="1">
 	</div>	
 
 </section>
 
-<section id="division-list">	
+<section id="quienes-pusieron">	
 
-		{#each people as someone, i}
-		<div class="someone" transition:blur>
-			<img src="https://avatars.dicebear.com/api/human/{someone.who}.svg?r=50&w=30" alt="{someone.who}">
-			{#if Math.sign(total/dividedBy - someone.howMuch) === -1}
-				<p class="who">A <strong>{someone.who}</strong> le deben</p>
+		{#each lista as alguien, i}
+		<div class="lista-item" transition:blur>
+			<img src="https://avatars.dicebear.com/api/human/{alguien.quien}.svg?r=50&w=30" alt="{alguien.quien}">
+			{#if alguien.resto === 0}
+				<p class="quien"><strong>{alguien.quien}</strong> ya puso</p>
 				<hr>
-				<p class="how-much receives">{formatter.format(Math.abs(Math.round(total/dividedBy - someone.howMuch)))}</p>
-			{:else if Math.sign(total/dividedBy - someone.howMuch) === 1 }
-				<p class="who"><strong>{someone.who}</strong> debe</p>
+				<p class="cuanto saldado">{formatter.format(alguien.cuanto)}</p>
+			{:else if totalDelResto > alguien.cuanto }
+				<p class="quien"><strong>{alguien.quien}</strong> debe</p>
 				<hr>
-				<p class="how-much debit">{formatter.format(Math.round(total/dividedBy - someone.howMuch))}</p>
+				<p class="cuanto debe">{formatter.format(alguien.resto)}</p>
 			{:else}
-				<p class="who"><strong>{someone.who}</strong> ya puso</p>
+				<p class="quien">A <strong>{alguien.quien}</strong> le deben</p>
 				<hr>
-				<p class="how-much without-debt">{formatter.format(Math.round(someone.howMuch))}</p>
+				<p class="cuanto recibe">{formatter.format(alguien.resto)}</p>
 			{/if}
 		</div>
 		{/each}
 
-		{#if dividedBy > people.length}
-		<div class="someone" transition:blur>
-			<img src="https://avatars.dicebear.com/api/human/{people.length}.svg?r=50&w=30" alt="Someone">
-			<p class="who">El <strong>resto</strong> debe</p>
+		{#if cantidadDePersonas > lista.length}
+		<div class="lista-item" transition:blur>
+			<img src="https://avatars.dicebear.com/api/human/{lista.length}.svg?r=50&w=30" alt="El Resto">
+			<p class="quien">El <strong>resto</strong> debe</p>
 			<hr>
-			<p class="how-much">{formatter.format(Math.round((total / dividedBy) * (dividedBy - people.length)))}</p>
+			<p class="cuanto debe">{formatter.format(cadaUno)}</p>
 		</div>
-		<div class="rest" transition:blur>
-			<p><strong>{formatter.format(Math.round(total / dividedBy))}</strong> <span>c/u</span></p>
+		<div class="resto" transition:blur>
+			<p><strong>{formatter.format(totalDelResto)}</strong> <span>c/u</span></p>
 		</div>
 		{/if}	
 		
-		<button class="btn-clean" aria-label="Borrar todo" on:click={removeAll}>
+		<button class="btn-clean" aria-label="Borrar todo" on:click={eliminarTodos}>
 			Borrar lista
 		</button>
 

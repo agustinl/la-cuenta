@@ -1,22 +1,75 @@
-*:focus {
-    outline: thin dotted;
-    background:transparent;
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
-:root {
-  --main-bg-color: brown;
+::-moz-selection {
+    background: rgba(41, 101, 223,.1);
+    text-shadow: none;
 }
 
+::selection {
+    background: rgba(41, 101, 223,.1);
+    text-shadow: none;
+}
+
+/* Make images easier to work with */
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* Remove default margin */
+body,
+h1,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+figure,
+blockquote,
+dl,
+dd {
+    margin: 0;
+}
+
+hr {
+    flex-grow:1;
+    border:none;
+    border-top:dashed 1px #CCC;
+    margin: 0 10px;
+}
+
+/* Set core root defaults */
+html {
+    font-size: 1rem;
+    scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
 body {
-    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-    color:#000;
-    background: #FAFAFA;
-}
-
-main {
-    max-width: 380px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+    color: #111;
+    background: #FFF;
+    max-width: 340px;
     margin: 0px auto;
     padding: 10px;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+    box-sizing: border-box;
+    width: 100% 
 }
 
 header {    
@@ -24,10 +77,6 @@ header {
     align-items:center;
     flex-wrap:wrap;
     margin-bottom:10px;
-}
-
-header img {
-    max-width:60px;
 }
 
 h1 {
@@ -39,13 +88,9 @@ h1 {
 
 h2 {
     font-size:18px;
-    font-weight:700;
+    font-weight:600;
     width:100%;
-    color:#999;
-}
-
-h3 {
-    margin:0;
+    border-bottom:solid 1px #CCC;
 }
 
 h3:first-child {
@@ -58,6 +103,7 @@ h3:last-child {
     font-weight:600;
     font-family: monospace;
     text-align:right;
+    color: #2965df;
 }
 
 h5 {
@@ -71,6 +117,11 @@ h6 {
     margin:0;
 }
 
+h5,
+h6 {
+    color: rgba(204, 204, 204, 1);
+}
+
 a {
     text-decoration:none;
     color:inherit;
@@ -78,31 +129,30 @@ a {
 
 p {
     font-size:16px;
-    margin:0;
 }
 
-.how-much {
+.cuanto {
     font-family: monospace;
     font-weight:600;
 }
 
-.how-much.receives {
+.cuanto.recibe {
     color:#3EC960;
 }
 
-.how-much.debit,
-.rest p strong {
+.cuanto.debe,
+.resto p strong {
     color: #FF3A30;
 }
 
-.rest p {
+.resto p {
     font-family: monospace;
     font-size:18px;
     text-align:center;
     margin:0;
 }
 
-.rest p span {
+.resto p span {
     font-size:14px;
 }
 
@@ -113,88 +163,80 @@ p {
     margin-bottom:15px;
 }
 
-.input-group input:nth-child(4) {
-    margin-left:5px;    
-    font-family: monospace;
-}
-
-input {
-    box-sizing: border-box;
-    width: 100%;
-    height:36px;
-    border-radius: 5px;
-    padding: 0px 8px;
-
-    font-family:inherit;
-    font-size:16px;
-    background-color: #fff;
-    border: 1px solid #CCC;
-
+input,
+button,
+.input-group img,
+header img {
     transition: .3s;
 }
 
+.input-group img,
+header img {
+    height:30px;
+    cursor:pointer;
+}
+
+.input-group img:hover,
+header img:hover {
+    opacity:.9;
+    transform:scale(1.2);
+}
+
+input {
+    max-width:43%;
+    height:36px;
+    border-radius: 2px;
+    padding: 0px 8px;
+    font-size:16px;
+    border: 1px solid #ccc;
+}
+
 button {
+    background:none;
     line-height: 1.5715;
     font-weight: 600;
     text-align: center;
-    border: 1px solid transparent;
-    cursor: pointer;
-    -webkit-transition: all .3s cubic-bezier(.645,.045,.355,1);
-    transition: all .3s cubic-bezier(.645,.045,.355,1);
-    font-family:inherit;
+    border: 0;
     height: 36px;
     font-size: 14px;
-    border-radius: 5px;
-    width:100%;
+    border-radius: 2px;
+    cursor:pointer;
+    padding:0;
+    margin:0;
 }
 
-button.btn-add {    
-    color: #fff;
-    background:rgb(41,101,223);
+button.btn-add {
+    color: #2965df;
+    background:rgba(41, 101, 223,0.1);
+    border: solid 1px #2965df;
+    box-shadow: 0px 1px 0px rgba(0,0,0,0.1);
 }
 
-button.btn-delete {
-    width:auto;
-    border:none;
-    background:transparent;
-
-    color: #FF3A30;
+button.btn-clean {
+    margin-top:20px;    
+    color: #000;
+    background:rgba(204, 204, 204, 0.1);
+    border: solid 1px rgba(204, 204, 204, 1);
+    box-shadow: 0px 1px 0px rgba(0,0,0,0.1);
 }
 
-button.btn-clean {    
-    flex-grow:1;
-    width: 100%;
-    margin-top:20px;
-    background:rgba(0,0,0,.03);
-}
-
-button.btn-send {
-    width:auto;
-    height:auto;
-    border:none;
-    padding-top:8px;
-    background:transparent;
-    
-    color:rgb(41,101,223);
-}
-
-input:focus,
 input:hover,
+input:focus,
 button.btn-add:hover,
 button.btn-add:focus {
-    border-color: rgb(41,101,223);
-    border-right-width: 1px!important;
     outline: 0;
-    -webkit-box-shadow: 0 0 0 2px rgba(24,144,255,.2);
-    box-shadow: 0 0 0 2px rgba(24,144,255,.2);
+    border: solid 1px #2965df;
+    box-shadow: 0 0 0 2px rgba(41, 101, 223,.2);
 }
 
-#who-put-list,
-#division-list {
-    margin: 20px 0 0;
+button.btn-clean:hover,
+button.btn-clean:focus {
+    outline: 0;
+    border: solid 1px #CCC;
+    box-shadow: 0 0 0 2px rgba(204, 204, 204,.2);    
 }
 
-.someone {
+.lista-item {
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -203,24 +245,17 @@ button.btn-add:focus {
     margin: 10px 0;
 }
 
-.someone img {
+.lista-item img {
     margin-right:5px;
 }
 
-hr {
-    flex-grow:1;
-    border:none;
-    border-top:dashed 1px #CCC;
-    margin: 0 10px;
-}
-
 #total {
-    margin: 40px 0 ;
-    padding:10px 20px;
+    margin: 40px 0;
+    padding:10px;
     background:#FFF;
     border-radius:5px;
-    border: solid 1px #FAFAFA;
-    box-shadow: 0 0 10px rgba(204,204,204,0.3);
+    border: solid 1px rgba(204,204,204,0.5);
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.1);
 }
 
 #total > div {
@@ -233,20 +268,21 @@ hr {
     flex-grow:1;
 }
 
-.divided-by {
+.dividir-por {
     margin-top: 10px;
 }
 
-.divided-by input {
+.dividir-por input {
     max-width:100px;
 }
 
-.rest {
-    background: #FFFFFF;
-    border: dashed 1px #999;
+.resto {
+    border-radius:5px;
+    border: dashed 1px rgba(204,204,204,0.8);
+    box-shadow: 0px 0px 3px rgba(0,0,0,0.1);
     padding: 5px 10px;
     border-radius: 5px;
-    margin-top:20px;    
+    margin-top:20px;
 }
 
 .visuallyhidden {
