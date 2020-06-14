@@ -87,7 +87,7 @@
 
 	<div class="total">
 		<h3>Total</h3>
-		<h3>{formatter.format(total)}</h3>
+		<h3><strong>{formatter.format(total)}</strong></h3>
 	</div>
 
 	<div class="dividir-por">
