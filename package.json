@@ -1,6 +1,6 @@
 {
     "name": "la-cuenta",
-    "description": "Application to calculate the bill for a dinner with friends",
+    "description": "Progressive web app to calculate the bill for a dinner with friends",
     "version": "3.0.0",
     "scripts": {
         "dev": "sapper dev",

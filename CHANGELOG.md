@@ -1,4 +1,6 @@
-# la-cuenta changelog
+<img alt="La Cuenta" src="https://raw.githubusercontent.com/agustinl/cuentas-claras/develop/static/favicon-32x32.png">
+
+# La Cuenta Changelog
 
 ## 3.0.0
 - [x] New UI

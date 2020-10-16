@@ -1,8 +1,8 @@
 <img alt="La Cuenta" src="https://raw.githubusercontent.com/agustinl/cuentas-claras/develop/static/favicon-32x32.png">
 
-# la-cuenta
+# La Cuenta
 
-Application to calculate the bill for a dinner with friends.
+Progressive web app to calculate the bill for a dinner with friends.
 
 ## Stack
 
