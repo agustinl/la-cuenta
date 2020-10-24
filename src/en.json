@@ -1,0 +1,19 @@
+{
+    "add_button": "Add other",
+    "who_pay": "Who Pay?",
+    "how_much": "How much pay?",
+    "divided_by": "Divided by",
+    "must_be_paid": "Must be paid",
+    "must_pay": "Must pay",
+    "already_paid": "Already paid",
+    "total_others": "In total the others must pay",
+    "total": "Total",
+    "each_pays": "Each pays",
+    "delete_all": "Delete all",
+    "cancel": "Cancel",
+    "delete_confirm": "Delete the entire list?",
+    "home": "Home",
+    "share": "Share",
+    "made_for": "Created with 🧉 by",
+    "description": "Calculate the bill for a dinner with friends"
+}

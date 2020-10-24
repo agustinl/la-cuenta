@@ -1,0 +1,19 @@
+{
+    "add_button": "Agregar otro",
+    "who_pay": "Quien pago?",
+    "how_much": "Cuanto pago?",
+    "divided_by": "Dividido por",
+    "must_be_paid": "Tienen que pagarle",
+    "must_pay": "Tiene que pagar",
+    "already_paid": "Ya pago",
+    "total_others": "En total, los demas tienen que pagar",
+    "total": "Total",
+    "each_pays": "Cada uno paga",
+    "delete_all": "Borrar todo",
+    "cancel": "Cancelar",
+    "delete_confirm": "Borrar toda la lista?",
+    "home": "Inicio",
+    "share": "Compartir",
+    "made_for": "Creado con 🧉 por",
+    "description": "Calcula la factura de una cena con amigos"
+}

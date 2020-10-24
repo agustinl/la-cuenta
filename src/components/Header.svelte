@@ -1,4 +1,5 @@
 <script>
+	import { _ } from 'svelte-i18n';
 	import { listaCompartir, totalCompartir, divisionCompartir, cantidadDePersonasCompartir } from '../routes/compartirCuenta.js';
 
 	let navigatorShare = false;
@@ -73,13 +74,13 @@
 			<ul class="navbar-nav">
 				<li class="nav-item active">
 					<a class="nav-link" href="#!">
-						Inicio
+						{$_('home')}
 					</a>
 				</li>
 				{#if navigatorShare}
 				<li class="nav-item">
 					<a class="nav-link" href="#!" on:click={compartirCuenta}>
-						Compartir
+						{$_('share')}
 					</a>
 				</li>
 				{/if}

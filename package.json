@@ -1,7 +1,7 @@
 {
     "name": "la-cuenta",
     "description": "Progressive web app to calculate the bill for a dinner with friends",
-    "version": "3.0.0",
+    "version": "4.0.0",
     "scripts": {
         "dev": "sapper dev",
         "build": "sapper build --legacy",
@@ -13,9 +13,11 @@
         "deploy": "npm run export && node ./scripts/gh-pages.js"
     },
     "dependencies": {
+        "@rollup/plugin-json": "^4.1.0",
         "compression": "^1.7.1",
         "polka": "next",
-        "sirv": "^0.4.0"
+        "sirv": "^0.4.0",
+        "svelte-i18n": "^3.1.0"
     },
     "keywords": [
         "svelte",

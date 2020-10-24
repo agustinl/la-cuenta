@@ -1,11 +1,15 @@
 <script>
-    import { blur } from "svelte/transition";
+	import { blur } from "svelte/transition";
+	import Modal from '../components/Modal.svelte';
+	import { _ } from 'svelte-i18n';
+
     import {
         listaCompartir,
         totalCompartir,
         divisionCompartir,
         cantidadDePersonasCompartir,
-    } from "./compartirCuenta.js";
+	} from "./compartirCuenta.js";
+	
     import { afterUpdate, beforeUpdate } from "svelte";
 
     $: lista = [{ quien: "", cuanto: 0 }];
@@ -31,7 +35,7 @@
             lista[i].resto = Math.abs(
                 Math.round(total / cantidadDePersonas - lista[i].cuanto)
             );
-        }
+		}
     });
 
     afterUpdate(() => {
@@ -55,21 +59,23 @@
 
         lista.splice(i, 1);
         lista = lista;
-    }
-
-    function eliminarTodos() {
-        lista = [];
-        lista = [{ quien: "", cuanto: 0 }];
-
-        cantidadDePersonas = lista.length;
-    }
+	}
+	
+	function handleDispatch(event) {
+		lista = event.detail.lista;
+        cantidadDePersonas = event.detail.cantidadDePersonas;
+	}
 </script>
+
+<Modal
+	on:deleteAll={handleDispatch}
+/>
 
 <div class="row justify-content-center">
     <div class="col col-md-6 col-md-auto mt-5">
         {#each lista as alguien, i}
             <div class="input-group mt-2" transition:blur>
-                <label for={i} class="visuallyhidden">¿Quien puso?</label>
+                <label for={i} class="visuallyhidden">{$_('who_pay')}</label>
                 <input
                     type="text"
                     name="quien"
@@ -79,7 +85,7 @@
                     maxlength="12"
                     class="form-control" />
 
-                <label for={i + "b"} class="visuallyhidden">Cuanto puso?</label>
+                <label for={i + "b"} class="visuallyhidden">{$_('how_much')}</label>
                 <input
                     type="number"
                     name="cuanto"
@@ -103,7 +109,6 @@
         {/each}
     </div>
 </div>
-
 <div class="row justify-content-center">
 	<div class="col col-md-6 col-md-auto mt-3 mb-4">
 		<button
@@ -111,7 +116,7 @@
 			class="btn btn-primary btn-block"
 			on:click={agregarOtro}
 		>
-			Agregar otro
+			{$_('add_button')}
 		</button>
 	</div>
 </div>
@@ -121,7 +126,7 @@
 		<div class="input-group">
 			<div class="input-group-prepend">
 				<span class="input-group-text" id="basic-addon1">
-					Dividir por
+					{$_('divided_by')}
 				</span>
 			</div>
 			<input
@@ -148,7 +153,7 @@
 								alt={alguien.quien} />
 							<div class="flex-grow-1 ml-3">
 								<h6 class="my-0">{alguien.quien}</h6>
-								<small class="text-muted">Ya puso</small>
+								<small class="text-muted">{$_('already_paid')}</small>
 							</div>
 							<strong class="">{formatter.format(alguien.cuanto)}</strong>
 						</li>
@@ -159,7 +164,7 @@
 								alt={alguien.quien} />
 							<div class="flex-grow-1 ml-3">
 								<h6 class="my-0">{alguien.quien}</h6>
-								<small class="text-danger">Tiene que poner</small>
+								<small class="text-danger">{$_('must_pay')}</small>
 							</div>
 							<strong class="">{formatter.format(alguien.resto)}</strong>
 						</li>
@@ -170,7 +175,7 @@
 								alt={alguien.quien} />
 							<div class="flex-grow-1 ml-3">
 								<h6 class="my-0">{alguien.quien}</h6>
-								<small class="text-success">Le tienen que dar</small>
+								<small class="text-success">{$_('must_be_paid')}</small>
 							</div>
 							{#if alguien.cuanto === undefined}
 								<strong class="">{formatter.format(0)}</strong>
@@ -187,7 +192,7 @@
 						src="https://avatars.dicebear.com/api/human/{lista.length}.svg?r=50&w=30"
 						alt="El Resto" /> -->
 					<div class="text-danger">
-						<h6 class="my-0">En total los demas ponen</h6>
+						<h6 class="my-0">{$_('total_others')}</h6>
 					</div>
 					<strong class="text-danger">{formatter.format(cadaUno)}</strong>
 				</li>
@@ -195,14 +200,14 @@
 
 			{#if total > 0}
 				<li class="list-group-item d-flex justify-content-between bg-light">
-					<strong>Total</strong>
+					<strong>{$_('total')}</strong>
 					<strong>{formatter.format(total)}</strong>
 				</li>
 			{/if}
 
 			{#if cantidadDePersonas > lista.length}
 				<li class="list-group-item d-flex justify-content-between text-danger">
-					<span>Cada uno</span>
+					<span>{$_('each_pays')}</span>
 					<strong>{formatter.format(totalDelResto)}</strong>
 				</li>
 			{/if}
@@ -216,10 +221,9 @@
 			type="button"
 			class="btn btn-danger btn-block"
 			data-toggle="modal"
-			data-target="#exampleModal"
-			on:click={eliminarTodos}
+			data-target="#deleteAllModal"			
 		>
-			Borrar todo
+			{$_('delete_all')}
 		</button>
 	</div>
 </div>
