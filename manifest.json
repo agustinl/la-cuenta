@@ -3,7 +3,7 @@
 	"theme_color": "#FAFAFA",
 	"name": "La Cuenta",
 	"short_name": "La Cuenta",
-	"description": "Dividi la cuenta y todos a mano",
+	"description": "Progressive web app to calculate the bill for a dinner with friends",
 	"display": "minimal-ui",
 	"start_url": "/la-cuenta/?source=pwa",
 	"icons": [
