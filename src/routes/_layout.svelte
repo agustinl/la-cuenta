@@ -11,11 +11,6 @@
 	import Footer from '../components/Footer.svelte';
 </script>
 
-<svelte:head>
-    <title>La Cuenta</title>
-    <meta name="description" content="Dividi la cuenta y todos a mano" />
-</svelte:head>
-
 {#if $isLoading}
   	<div class="loading">Loading...</div>
 {:else}
