@@ -10,7 +10,7 @@ const dev = NODE_ENV === 'development';
 
 const url = dev ? '/' : 'la-cuenta';
 
-polka() // You can also use Express
+polka()
 	.use(
         url,
 		compression({ threshold: 0 }),

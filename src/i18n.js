@@ -17,8 +17,8 @@ const INIT_OPTIONS = {
 
 let currentLocale = null;
 
-register('en', () => import('./en.json'));
-register('es', () => import('./es.json'));
+register('en', () => import('../messages/en.json'));
+register('es', () => import('../messages/es.json'));
 
 $locale.subscribe((value) => {
 	if (value == null) return;
@@ -57,9 +57,13 @@ export function i18nMiddleware() {
 
 		// no cookie, let's get the first accepted language
 		if (locale == null) {
-			const headerLang = req.headers['accept-language'].split(',')[0].trim();
-			if (headerLang.length > 1) {
-				locale = headerLang;
+			if (req.headers['accept-language']) {
+				const headerLang = req.headers['accept-language'].split(',')[0].trim();
+				if (headerLang.length > 1) {
+					locale = headerLang;
+				}
+			} else {
+				locale = INIT_OPTIONS.initialLocale || INIT_OPTIONS.fallbackLocale;
 			}
 		}
 
